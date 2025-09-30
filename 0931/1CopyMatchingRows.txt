@@ -1,0 +1,41 @@
+Sub CopyMatchingRows()
+    Dim ws5 As Worksheet
+    Dim ws1 As Worksheet
+    Dim ws4 As Worksheet
+    Dim cellA As Range
+    Dim cellC As Range
+    Dim lastRow5 As Long
+    Dim lastRow1 As Long
+    Dim targetRow As Long
+    
+    Set ws5 = ThisWorkbook.Sheets("工作表5")
+    Set ws1 = ThisWorkbook.Sheets("工作表1")
+    Set ws4 = ThisWorkbook.Sheets("工作表4")
+    
+    lastRow5 = ws5.Cells(ws5.Rows.Count, "A").End(xlUp).Row
+    
+    lastRow1 = ws1.Cells(ws1.Rows.Count, "C").End(xlUp).Row
+    
+    targetRow = 3
+    
+    For Each cellA In ws5.Range("A1:A" & lastRow5)
+        If Not IsEmpty(cellA) Then
+    
+            For Each cellC In ws1.Range("C1:C" & lastRow1)
+                If Not IsEmpty(cellC) Then
+    
+                    If cellA.Value = cellC.Value Then
+    
+                        ws1.Rows(cellC.Row).Copy ws4.Cells(targetRow, 1)
+    
+                        targetRow = targetRow + 1
+                        ws4.Rows(targetRow).Insert Shift:=xlDown
+                        ws4.Rows(targetRow).Insert Shift:=xlDown
+                        ws4.Rows(targetRow).Insert Shift:=xlDown
+                        targetRow = targetRow + 3
+                    End If
+                End If
+            Next cellC
+        End If
+    Next cellA
+End Sub
