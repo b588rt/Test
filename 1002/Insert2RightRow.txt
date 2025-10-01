@@ -18,9 +18,10 @@ Sub InsertCellsBelowSE()
 
             If j <= ws.Rows.Count Then
 
-                ws.Range(ws.Cells(j, 2), ws.Cells(j, 4)).Insert Shift:=xlToRight
+                ws.Range(ws.Cells(j, 2), ws.Cells(j, 4)).Insert Shift:=xlToRight  'insert 4 row
             End If
         End If
     Next r
     
+
 End Sub
