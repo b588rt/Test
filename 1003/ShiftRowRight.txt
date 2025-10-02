@@ -1,0 +1,31 @@
+
+Sub ShiftRowRightAfterSE()
+
+    Dim ws As Worksheet
+    Dim lastRow As Long
+    Dim i As Long
+    Dim seRow As Long
+    Dim targetRow As Long
+    
+   
+    Set ws = Worksheets("工作表4")
+    
+  
+    lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row
+    
+   
+    For i = 1 To lastRow
+   
+        If UCase(Trim(ws.Cells(i, "A").Value)) = "SE" Then
+            seRow = i  
+            targetRow = seRow + 2  ' SE Next 2 Row
+            
+            If targetRow <= lastRow Then
+                ' Shift ToRight A & B 
+                ws.Range(ws.Cells(targetRow, 1), ws.Cells(targetRow, 2)).Insert Shift:=xlToRight
+            End If
+        End If
+    Next i
+    
+   
+End Sub
