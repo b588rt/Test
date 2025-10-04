@@ -22,3 +22,6 @@ Sub CheckNOa()
     
     
 End Sub
+
+
+ws.Range("B1:Z500").Clear
