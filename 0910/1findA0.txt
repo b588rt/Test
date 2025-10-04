@@ -1,0 +1,32 @@
+Sub findA0()
+
+    Dim ws As Worksheet
+    Dim lastRow As Long
+    Dim i As Long
+    Dim targetRow As Long
+    Dim cellValue As String
+    Dim prevCellValue As String
+    
+    Set ws = ThisWorkbook.Worksheets("工作表4")
+    
+    lastRow = ws.Cells(ws.Rows.Count, "C").End(xlUp).Row
+    
+    For i = 2 To lastRow
+        cellValue = Trim(CStr(ws.Cells(i, "C").Value))  
+        
+        If Left(UCase(cellValue), 3) = "A0" Then     'find A0
+
+            prevCellValue = Trim(CStr(ws.Cells(i - 1, "C").Value))
+            If prevCellValue = "" Then
+                targetRow = i - 1      target up row
+                
+                ws.Rows(1).Copy
+                ws.Rows(targetRow).PasteSpecial xlPasteAll
+                
+                Application.CutCopyMode = False
+            End If
+        End If
+    Next i
+    
+       
+End Sub
