@@ -1,0 +1,24 @@
+
+Sub CheckNOa()
+
+    Dim ws5 As Worksheet, ws1 As Worksheet
+    Set ws5 = Worksheets("工作表5") 
+    Set ws1 = Worksheets("工作表1") 
+    
+    Dim rngA As Range
+    Set rngA = ws5.Range("A2:A500")
+    
+    Dim cell As Range
+    For Each cell In rngA
+        If Not IsEmpty(cell.Value) And cell.Value <> "" Then 
+            If Application.WorksheetFunction.CountIf(ws1.Range("C2:C500"), cell.Value) = 0 Then
+                With cell.Offset(0, 1) 
+                    .Value = "No A"
+                    .Interior.Color = RGB(255, 255, 0) 
+                End With
+            End If
+        End If
+    Next cell
+    
+    
+End Sub
