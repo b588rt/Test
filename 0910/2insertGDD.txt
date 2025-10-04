@@ -1,0 +1,30 @@
+Sub FillGDD()
+
+    Dim ws As Worksheet
+    Dim lastRow As Long
+    Dim i As Long
+    Dim cellValue As String
+    Dim nextCellValue As String
+    
+   
+    Set ws = ThisWorkbook.Worksheets("工作表4")
+    
+    lastRow = ws.Cells(ws.Rows.Count, "C").End(xlUp).Row  'find C last row
+    
+  
+    For i = 1 To lastRow - 1
+        cellValue = Trim(CStr(ws.Cells(i, "C").Value))  
+        
+       
+        If Left(UCase(cellValue), 3) = "A0" Then
+
+            nextCellValue = Trim(CStr(ws.Cells(i + 1, "C").Value))
+            If nextCellValue = "" Then
+ 
+                ws.Cells(i + 1, "C").Value = "GDD"
+            End If
+        End If
+    Next i
+    
+ 
+End Sub
