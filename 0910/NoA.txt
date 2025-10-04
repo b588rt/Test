@@ -25,3 +25,6 @@ End Sub
 
 
 ws.Range("B1:Z500").Clear
+
+ws.Range("B1:Z500").ClearContents
+
