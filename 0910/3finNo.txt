@@ -1,0 +1,27 @@
+Sub FillNo()
+
+    Dim ws As Worksheet
+    Dim lastRow As Long
+    Dim i As Long
+    Dim cellValue As String
+    Dim eCellValue As String
+    
+   
+    Set ws = ThisWorkbook.Worksheets("工作表4")
+    
+   
+    lastRow = ws.Cells(ws.Rows.Count, "C").End(xlUp).Row
+    
+   
+    For i = 1 To lastRow
+        cellValue = Trim(UCase(CStr(ws.Cells(i, "C").Value)))  
+        
+        If cellValue = "GDD" Then
+            eCellValue = Trim(CStr(ws.Cells(i, "E").Value))
+            If eCellValue = "" Then
+                ws.Cells(i, "E").Value = "No"
+            End If
+        End If
+    Next i
+    
+End Sub
