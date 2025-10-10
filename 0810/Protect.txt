@@ -1,0 +1,47 @@
+
+
+Sub Main()
+
+    Call LockRangeB1ToZ500
+
+    
+End Sub
+
+
+Sub LockRangeB1ToZ500()
+
+
+    With ThisWorkbook.Worksheets("工作表5")
+        
+        .Unprotect
+        .Cells.Locked = False
+        
+        .Range("A7:A500").Locked = True
+        .Range("B1:Z500").Locked = True
+        
+        .Protect
+    
+    End With
+    
+   
+
+End Sub
+
+
+
+
+Sub Release()
+
+
+    With ThisWorkbook.Worksheets("工作表5")
+        
+        .Unprotect    '解除保護
+        
+        .Range("A7:A500").Locked = False
+        .Range("B1:Z500").Locked = False  '解除鎖定
+        
+    End With
+    
+  
+    
+End Sub
