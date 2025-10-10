@@ -1,0 +1,34 @@
+
+Sub CheckAndClearCells()
+
+    Dim ws As Worksheet
+    Dim rng As Range
+    Dim cell As Range
+    Dim rightCell As Range
+    
+  
+    Set ws = ThisWorkbook.Worksheets("工作表4")
+    
+  
+    Set rng = ws.Range("E2:E500")
+    
+  
+    For Each cell In rng
+
+        ' check cell include "No"
+        If InStr(1, cell.Value, "No", vbTextCompare) > 0 Then
+
+            ' Move right2 cell
+            Set rightCell = cell.Offset(0, 2)
+            
+            ' clear right2 cell
+            rightCell.ClearContents
+        End If
+    Next cell
+    
+    Set ws = Nothing
+    Set rng = Nothing
+    Set cell = Nothing
+    Set rightCell = Nothing
+    
+End Sub

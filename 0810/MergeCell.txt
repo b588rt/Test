@@ -1,0 +1,25 @@
+
+Sub MergeAndFillCells()
+
+    Dim ws As Worksheet
+    Dim mergeRange As Range
+    
+   
+    Set ws = ThisWorkbook.Worksheets("工作表4")
+    
+   
+    Set mergeRange = ws.Range("D1:G1")
+    
+    mergeRange.Merge 'merge("D1:G1")
+
+    
+    ws.Range("D1").Value = "result"
+    
+    ws.Range("C1").Font.Size = 25
+    ws.Range("D1").HorizontalAlignment = xlCenter
+    ws.Range("D1").VerticalAlignment = xlCenter
+    ws.Range("D1").Interior.Color = RGB(255, 215, 0)
+    
+    Set ws = Nothing
+    Set mergeRange = Nothing
+End Sub

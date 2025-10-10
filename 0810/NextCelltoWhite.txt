@@ -1,0 +1,36 @@
+Sub CheckAndColorCells()
+
+    Dim ws As Worksheet
+    Dim rng As Range
+    Dim cell As Range
+    Dim nextCell As Range
+    
+ 
+    Set ws = ThisWorkbook.Worksheets("工作表4")
+    
+ 
+    Set rng = ws.Range("E2:E500")
+    
+    For Each cell In rng
+
+        ' find cell Value "No"
+        If InStr(1, cell.Value, "NO", vbTextCompare) > 0 Then
+ 
+           ' set nestCell
+            Set nextCell = cell.Offset(1, 0)
+            
+               ' check next Cell is empty
+
+            If IsEmpty(nextCell.Value) Or Trim(nextCell.Value) = "" Then
+
+                nextCell.Interior.Color = RGB(255, 255, 255)
+
+            End If
+        End If
+    Next cell
+    
+    Set ws = Nothing
+    Set rng = Nothing
+    Set cell = Nothing
+    Set nextCell = Nothing
+End Sub

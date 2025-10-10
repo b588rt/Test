@@ -1,0 +1,29 @@
+
+Sub ConvertLowerToUpper()
+
+    Dim ws As Worksheet
+    Dim rng As Range
+    Dim cell As Range
+    
+    
+    Set ws = ThisWorkbook.Worksheets("工作表5")
+    
+    Set rng = ws.Range("A2:A500")
+    
+
+    For Each cell In rng
+
+        If Not IsEmpty(cell.Value) And cell.Value <> "" Then
+
+            ' Check Big Word
+            If cell.Value Like "*[a-z]*" Then
+                cell.Value = UCase(cell.Value)  ' change to Big Word
+
+            End If
+        End If
+
+    Next cell
+    
+   
+End Sub
+

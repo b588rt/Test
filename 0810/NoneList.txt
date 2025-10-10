@@ -1,0 +1,29 @@
+Sub CheckAndMarkUnmatched()
+
+    Dim ws5 As Worksheet, ws1 As Worksheet
+    Dim rngA As Range
+    Dim cell As Range
+
+    Set ws5 = Worksheets("工作表5")  
+    Set ws1 = Worksheets("工作表1")  
+    
+    Set rngA = ws5.Range("A2:A500")
+    
+
+    For Each cell In rngA
+
+            'check (A2:A500) cell is not empty then do.....
+        If Not IsEmpty(cell.Value) And cell.Value <> "" Then 
+
+            ' check (A2:A500) and (C2:C500)
+            If Application.WorksheetFunction.CountIf(ws1.Range("C2:C500"), cell.Value) = 0 Then
+                With cell.Offset(0, 1)  ' Move A cell right , is B cell
+                    .Value = "NO"
+                    .Interior.Color = RGB(255, 255, 0)  
+                End With
+            End If
+        End If
+    Next cell
+    
+    
+End Sub
