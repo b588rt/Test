@@ -1,0 +1,45 @@
+
+Sub CheckAndCopyCells()
+
+    Dim ws As Worksheet
+    Dim rng As Range
+    Dim cell As Range
+    Dim nextCell As Range
+    Dim copyTarget1 As Range
+    Dim copyTarget2 As Range
+    
+   
+    Set ws = ThisWorkbook.Worksheets("工作表4")
+    
+    
+    Set rng = ws.Range("G2:G500")
+    
+   
+    For Each cell In rng
+
+        If InStr(1, cell.Value, "Unt", vbTextCompare) > 0 Then 'find Unt 
+
+            Set nextCell = cell.Offset(1, 0)   'set next cell
+            
+            ' check next cell is empty （if Not Empty Then）
+            If Not (IsEmpty(nextCell.Value) Or Trim(nextCell.Value) = "") Then
+                ' set next1 cell and Next 2 cell
+                Set copyTarget1 = cell.Offset(2, 0)
+                'Set copyTarget2 = cell.Offset(3, 0)
+                
+                ' Copy next1 cell and next2 cell
+                copyTarget1.Value = nextCell.Value
+                'copyTarget2.Value = nextCell.Value
+            End If
+        End If
+    Next cell
+    
+  
+    Set ws = Nothing
+    Set rng = Nothing
+    Set cell = Nothing
+    Set nextCell = Nothing
+    Set copyTarget1 = Nothing
+    Set copyTarget2 = Nothing
+    
+End Sub
