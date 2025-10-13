@@ -1,0 +1,27 @@
+Sub CheckAndFillSQ01()
+
+    Dim ws As Worksheet
+    Dim cell As Range
+    Dim rng As Range
+    
+    
+    Set ws = Worksheets("工作表4")
+    
+    
+    Set rng = ws.Range("C2:C500")
+    
+    
+    For Each cell In rng
+
+        If Left(cell.Value, 3) = "A00" Then ' find A00
+
+            If IsEmpty(cell.Offset(1, 0).Value) Then ' If Empty
+
+                cell.Offset(1, 0).Value = "No"   'next cell fill No
+            End If
+        End If
+    Next cell
+    
+  
+    
+End Sub
