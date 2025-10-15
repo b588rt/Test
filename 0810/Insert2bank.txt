@@ -1,0 +1,29 @@
+Sub ProcessWorksheet4()
+
+    Dim ws As Worksheet
+    Dim cell As Range
+    Dim target As Range
+    Dim i As Long
+    
+    
+    Set ws = ThisWorkbook.Worksheets("工作表4")
+    
+    
+    For i = 50 To 2 Step -1
+        Set cell = ws.Range("B" & i)
+        
+       
+        If InStr(1, cell.Value, "ASS", vbTextCompare) > 0 Then 'find ASS
+    
+            Set target = cell.Offset(2, 0)   'set next 2 cell
+            
+            ' check Empty
+            If Not IsEmpty(target.Value) And Trim(target.Value) <> "" Then
+
+                ' Insert Right 2 Cell
+                target.Offset(0, 0).Resize(1, 2).Insert Shift:=xlToRight
+            End If
+        End If
+    Next i
+    
+End Sub

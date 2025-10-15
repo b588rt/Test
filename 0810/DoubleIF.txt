@@ -1,0 +1,49 @@
+
+Sub MatchAndCopy1()
+    Dim ws4 As Worksheet
+    Dim wsLS As Worksheet
+    Dim cell As Range
+    Dim lsCell As Range
+    Dim searchVal1 As Variant
+    Dim searchVal2 As Variant
+    Dim foundRow As Long
+    
+    Set ws4 = ThisWorkbook.Worksheets("工作表4")
+    Set wsLS = ThisWorkbook.Worksheets("工作表LS")
+    
+    For Each cell In ws4.Range("E2:E50")
+        If InStr(1, cell.Value, "Number", vbTextCompare) > 0 Then
+          
+            ' check next 2 Cell is empty
+            If IsEmpty(cell.Offset(2, 0)) Or Trim(cell.Offset(2, 0).Value) = "" Then
+
+                ' find "number" next and forward cell 
+                searchVal1 = cell.Offset(1, -1).Value
+
+                ' find "number" next and backward cell 
+                searchVal2 = cell.Offset(1, 1).Value
+                
+                ' compare LS(B2:B500) and LS(D2:d500)
+
+                foundRow = 0
+                For Each lsCell In wsLS.Range("B2:B500")
+                    If lsCell.Value = searchVal1 Then
+                        If lsCell.Offset(0, 2).Value = searchVal2 Then  ' LS(D2:d500) is LS(B2:B500) Offset(0,2)
+                            foundRow = lsCell.Row
+                            Exit For  
+                        End If
+                    End If
+                Next lsCell
+                
+                ' If all compare and copy to sheet4
+                If foundRow > 0 Then
+                    wsLS.Rows(foundRow).Copy
+                    ws4.Rows(cell.Row + 2).PasteSpecial xlPasteValues
+                    Application.CutCopyMode = False
+                End If
+            End If
+        End If
+    Next cell
+    
+ 
+End Sub
