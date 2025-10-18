@@ -1,0 +1,29 @@
+Sub SortColumnGValues()
+
+   
+    
+    Dim ws As Worksheet
+    Set ws = ThisWorkbook.Worksheets("工作表8")
+    
+   
+    Dim sortRange As Range
+    Set sortRange = ws.Range("G2:G5000")
+    
+   
+    Dim hasData As Boolean
+    hasData = False
+    Dim cell As Range
+    For Each cell In sortRange
+        If Not IsEmpty(cell.Value) Then
+            hasData = True
+            Exit For
+        End If
+    Next cell
+    
+    
+    sortRange.Sort _              'Start Sort Big to little
+        Key1:=ws.Range("G2"), _
+        Order1:=xlDescending, _
+        Header:=xlNo
+    
+End Sub

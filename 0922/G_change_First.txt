@@ -1,0 +1,31 @@
+
+
+Sub ReplaceGToFirstInColumnA()
+
+ 
+    
+    Dim ws As Worksheet
+    Set ws = ThisWorkbook.Worksheets("工作表8")
+    
+    Dim rng As Range
+    Set rng = ws.Range("A2:A500")
+    
+    Dim cell As Range
+    Dim changedCount As Long
+    changedCount = 0
+    
+    For Each cell In rng
+        If Not IsEmpty(cell.Value) Then
+            Dim originalValue As String
+            originalValue = cell.Value
+            Dim newValue As String
+            newValue = Replace(originalValue, "G", "First", 1, -1, vbTextCompare)
+            If newValue <> originalValue Then
+                cell.Value = newValue
+                changedCount = changedCount + 1
+            End If
+        End If
+    Next cell
+    
+    
+End Sub
