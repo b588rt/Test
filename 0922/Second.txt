@@ -1,0 +1,36 @@
+
+
+
+Sub ProcessSheet4()
+    Dim ws As Worksheet
+    Set ws = Sheets("工作表4")  
+    
+    
+    Dim i As Long
+    
+    For i = 500 To 2 Step -1  
+
+        If InStr(1, ws.Cells(i, 3).Value, "Second", vbTextCompare) > 0 Then  'check C row Second
+
+            If i - 2 < 2 Then GoTo NextIteration
+            
+            Dim val1 As Variant
+            Dim val2 As Variant
+            val1 = ws.Cells(i, 6).Value  ' get C right 3 row is F row
+            val2 = ws.Cells(i - 2, 6).Value  ' F row up 2
+            
+            If val1 = val2 Then
+
+                ws.Rows(i).Cut
+
+                ws.Rows(i - 1).Insert Shift:=xlDown
+
+                Application.CutCopyMode = False  ' 清除剪貼簿
+            End If
+            
+        End If
+NextIteration:
+    Next i
+   
+    
+End Sub
