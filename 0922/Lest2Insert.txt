@@ -1,0 +1,25 @@
+
+Sub CheckNoOverAndFillQ1()
+
+    Dim ws As Worksheet
+    Dim rng As Range
+    Dim cell As Range
+    Dim i As Long
+    
+   
+    Set ws = ThisWorkbook.Sheets("工作表4")
+    
+   
+    Set rng = ws.Range("E1:E500")
+    
+   
+    For Each cell In rng
+        If InStr(1, cell.Value, "NoOver", vbTextCompare) > 0 Then  'find NoOver
+   
+            cell.Offset(0, -2).Value = "1111"
+            cell.Offset(0, 2).Value = ""
+        End If
+    Next cell
+    
+    
+End Sub
