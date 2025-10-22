@@ -1,0 +1,30 @@
+
+
+Sub CheckNumber()
+
+    
+    
+    Dim ws As Worksheet
+    Set ws = Worksheets("工作表4")  
+    
+    Dim rng As Range
+    Set rng = ws.Range("D1:D500")
+    
+    Dim cell As Range
+    Dim yellowColor As Long
+    yellowColor = RGB(255, 255, 0)  
+    
+    For Each cell In rng
+
+        If InStr(1, cell.Value, "Number", vbTextCompare) > 0 Then
+
+            
+            cell.Offset(0, 0).Interior.Color = yellowColor
+            
+            cell.Offset(0, -1).Interior.Color = yellowColor
+
+            cell.Offset(0, -2).Interior.Color = yellowColor
+        End If
+    Next cell
+    
+End Sub
