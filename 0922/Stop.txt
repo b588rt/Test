@@ -1,0 +1,35 @@
+
+
+Sub Main()
+   
+    If CheckCells() Then
+   
+        Exit Sub
+   
+    End If
+    
+   
+    Call SetYellow
+    Call SetBlack
+    
+End Sub
+
+Function CheckCells() As Boolean
+
+    Dim ws As Worksheet
+    Set ws = Worksheets("工作表5")  
+    
+    Dim rng As Range
+    Set rng = ws.Range("A2:A6")     
+    
+    If WorksheetFunction.CountA(rng) = 0 Then
+
+        CheckCells = True  
+
+    Else
+
+        CheckCells = False 
+
+    End If
+
+End Function
