@@ -1,0 +1,15 @@
+Sub DeleteColumnIfU2()
+
+    Dim ws As Worksheet
+    
+   
+    Set ws = ThisWorkbook.Worksheets("工作表8")
+    
+   
+    If ws.Range("C1").Value = "U1" Then
+   
+        ws.Columns("C").Delete
+   
+ End If
+
+End Sub
