@@ -1,0 +1,24 @@
+
+Sub CheckAndCopySheet()
+
+    Dim ws9 As Worksheet
+    Dim ws4 As Worksheet
+    Dim rangeCheck As Range
+    
+    Set ws9 = Worksheets("工作表9")
+    Set ws4 = Worksheets("工作表3")
+    Set rangeCheck = ws9.Range("C2:C5")
+    
+   
+    If Application.WorksheetFunction.CountA(rangeCheck) = 0 Then
+   
+        ws4.Cells.Copy
+        ws9.Cells.PasteSpecial xlPasteAll
+        Application.CutCopyMode = False
+        
+   
+        ws9.Columns("B:C").Delete
+
+    End If
+    
+End Sub
