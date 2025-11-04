@@ -4,28 +4,21 @@ Sub CopySheet2ToSheet1()
     Dim ws1 As Worksheet
     Dim ws2 As Worksheet
     
-   
     Set wb = Workbooks.Open("D:\Data1.xlsx")
     
-   
     Set ws1 = wb.Sheets("工作表1")
     Set ws2 = wb.Sheets("工作表2")
-    
-   
+       
     ws1.Cells.ClearContents
-    
-   
+       
     ws2.Cells.Copy
     ws1.Cells.PasteSpecial xlPasteValues
-    
-   
+       
     Application.CutCopyMode = False
-    
-   
+       
     wb.Save
     wb.Close
-    
-   
+       
     Set ws1 = Nothing
     Set ws2 = Nothing
     Set wb = Nothing
