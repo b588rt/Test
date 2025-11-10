@@ -1,0 +1,92 @@
+
+Sub ProcessM1M2M3Cells()
+
+    Dim ws As Worksheet
+    Dim i As Integer
+    Dim m1Cells As Collection
+    Dim m2Cells As Collection
+    Dim m3Cells As Collection
+    Dim hasNonWhite As Boolean
+    Dim cell As Range
+    
+ 
+    Set ws = ThisWorkbook.Worksheets("工作表2")
+    Set m1Cells = New Collection
+    Set m2Cells = New Collection
+    Set m3Cells = New Collection
+    hasNonWhite = False
+    
+   
+    For i = 1 To 50
+        If ws.Range("A" & i).Value = "M1" Then  'check A1:A50
+            m1Cells.Add ws.Range("A" & i)       'find M1
+        End If
+    Next i
+    
+   
+    For i = 1 To 50
+        If ws.Range("B" & i).Value = "M2" Then
+            m2Cells.Add ws.Range("B" & i)
+        End If
+    Next i
+    
+ 
+    For i = 1 To 50
+        If ws.Range("C" & i).Value = "M3" Then
+            m3Cells.Add ws.Range("C" & i)
+        End If
+    Next i
+    
+ 
+    For Each cell In m1Cells       'check M1 next row is white
+        Dim nextRowA As Integer
+        nextRowA = cell.Row + 1
+        If nextRowA <= 50 Then  
+            If ws.Range("A" & nextRowA).Interior.Color <> RGB(255, 255, 255) Then
+                hasNonWhite = True
+                Exit For              ' if not white then exit
+            End If
+        End If
+    Next cell
+    
+     For Each cell In m1Cells
+        Dim nextRowB As Integer
+        nextRowB = cell.Row + 1
+        If nextRowB <= 50 Then  
+            If ws.Range("B" & nextRowB).Interior.Color <> RGB(255, 255, 255) Then
+                hasNonWhite = True
+                Exit For  
+            End If
+        End If
+    Next cell
+    
+    For Each cell In m1Cells
+        Dim nextRowC As Integer
+        nextRowC = cell.Row + 1
+        If nextRowC <= 50 Then 
+            If ws.Range("C" & nextRowC).Interior.Color <> RGB(255, 255, 255) Then
+                hasNonWhite = True
+                Exit For 
+            End If
+        End If
+    Next cell
+    
+    
+   
+    If hasNonWhite Then                          'if anyone not white fill M1,M2,M3 to white
+        For Each cell In m1Cells
+            cell.Interior.Color = RGB(255, 255, 255)
+        Next cell
+        
+        For Each cell In m2Cells
+            cell.Interior.Color = RGB(255, 255, 255)
+        Next cell
+        
+        For Each cell In m3Cells
+            cell.Interior.Color = RGB(255, 255, 255)
+        Next cell
+    End If
+    
+   
+End Sub
+

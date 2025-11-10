@@ -1,0 +1,53 @@
+
+Sub CheckAndColorCells()
+
+    Dim ws As Worksheet
+    Set ws = ThisWorkbook.Worksheets("工作表2") 
+    
+    Dim i As Integer
+    Dim rowA As Integer, rowB As Integer, rowC As Integer
+    Dim cellA As Range, cellB As Range, cellC As Range
+    Dim nextRowA As Range, nextRowB As Range, nextRowC As Range
+    Dim isWhiteA As Boolean, isWhiteB As Boolean, isWhiteC As Boolean
+    
+    For i = 1 To 50
+
+        ' check A & i (A1)row include "M1"
+        Set cellA = ws.Range("A" & i)
+        If InStr(1, cellA.Value, "M1", vbTextCompare) > 0 Then
+            Set nextRowA = ws.Range("A" & (i + 1))
+            isWhiteA = (nextRowA.Interior.Color = RGB(255, 255, 255))  ' check white
+            
+            If isWhiteA Then
+
+                ' check B & i (B1)row include "M2"
+                Set cellB = ws.Range("B" & i)
+                If InStr(1, cellB.Value, "M2", vbTextCompare) > 0 Then
+                    Set nextRowB = ws.Range("B" & (i + 1))
+                    isWhiteB = (nextRowB.Interior.Color = RGB(255, 255, 255))
+                    
+                    If isWhiteB Then
+
+                       ' check C & i (C1)row include "M3"
+                        Set cellC = ws.Range("C" & i)
+                        If InStr(1, cellC.Value, "M3", vbTextCompare) > 0 Then
+                            Set nextRowC = ws.Range("C" & (i + 1))
+                            isWhiteC = (nextRowC.Interior.Color = RGB(255, 255, 255))
+                            
+                            If isWhiteC Then
+
+                                ' All check OK， Set M1, M2, M3 to Green
+                                cellA.Interior.Color = RGB(0, 255, 0)  
+                                cellB.Interior.Color = RGB(0, 255, 0)
+                                cellC.Interior.Color = RGB(0, 255, 0)
+
+                            End If
+                        End If
+                    End If
+                End If
+            End If
+        End If
+    Next i
+    
+   
+End Sub
