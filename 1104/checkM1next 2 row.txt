@@ -1,0 +1,37 @@
+Sub ProcessM1Cells()
+
+    Dim ws As Worksheet
+    Dim rng As Range
+    Dim cell As Range
+    Dim targetCell As Range
+   
+    Set ws = Worksheets("工作表2")
+   
+    Set rng = ws.Range("A1:A50")
+    
+    For Each cell In rng
+
+        If cell.Value = "M1" Then                 'find M1
+
+            Set targetCell = cell.Offset(2, 0)    'check M1 next 2 row
+           
+            If targetCell.Value <> "" Then        'if M1 next 2 row <> empty(have value)
+            
+                With targetCell.Borders(xlEdgeBottom)   'Write xlEdgeBottom
+                    .LineStyle = xlContinuous
+                    .Weight = xlThin  
+                    .Color = RGB(0, 0, 0) 
+                End With
+            Else
+              
+                With targetCell.Borders(xlEdgeTop)  'if no value
+                    .LineStyle = xlContinuous
+                    .Weight = xlThin  
+                    .Color = RGB(0, 0, 0) 
+                End With
+
+            End If
+        End If
+    Next cell
+   
+End Sub
