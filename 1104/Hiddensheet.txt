@@ -1,0 +1,15 @@
+
+
+Sub Opensheet()
+  
+    Worksheets("工作表8").Visible = xlSheetVisible
+
+End Sub
+
+
+Sub backsheet()
+
+    Worksheets("工作表8").Visible = xlSheetHidden
+    
+End Sub
+
