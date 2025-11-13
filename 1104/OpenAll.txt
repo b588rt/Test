@@ -1,0 +1,15 @@
+Sub UnhideAllHiddenSheets()
+
+    Dim ws As Worksheet
+    
+    
+    For Each ws In ThisWorkbook.Worksheets
+       
+        If ws.Visible <> xlSheetVisible Then
+            ws.Visible = xlSheetVisible
+        End If
+
+    Next ws
+    
+    
+End Sub
