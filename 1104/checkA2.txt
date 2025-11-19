@@ -1,0 +1,30 @@
+Sub CheckA2()
+
+    Dim cel As Range
+    Dim val As String
+    
+    For Each cel In ThisWorkbook.Sheets("工作表1").Range("A2:A7")
+        
+        If IsEmpty(cel.Value) Or Trim(cel.Value) = "" Then
+            GoTo NextCell
+        End If
+        
+        val = Trim(CStr(cel.Value))
+        
+        ' check X00
+        If Len(val) < 3 Or Left(val, 3) <> "X00" Then
+
+            cel.ClearContents
+            
+            ' fill 不符合
+            cel.Offset(0, 1).Value = "不符合"
+            
+            cel.Offset(0, 1).Interior.Color = vbRed
+            cel.Offset(0, 1).Font.Color = vbWhite
+            cel.Offset(0, 1).Font.Bold = True
+        End If
+        
+NextCell:
+    Next cel
+    
+End Sub
