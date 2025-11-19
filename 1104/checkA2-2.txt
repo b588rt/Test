@@ -1,0 +1,34 @@
+Sub CheckA3()
+
+Dim ws As Worksheet
+    Set ws = ThisWorkbook.Sheets("工作表1")
+    
+    Dim i As Long
+    Dim 目標行 As Long
+    Dim 原始值 As String
+    
+    目標行 = 9
+    
+    Application.ScreenUpdating = False
+    
+    For i = 7 To 2 Step -1
+        If Not IsEmpty(ws.Cells(i, 1)) Then
+            原始值 = Trim(CStr(ws.Cells(i, 1).Value))
+            
+            ' Check X00
+            If UCase(Left(原始值, 3)) <> "X00" Then
+              
+                ws.Cells(i, 1).Cut Destination:=ws.Cells(目標行, 1)
+                
+                ws.Cells(目標行, 2).Value = "不符合"
+                
+                目標行 = 目標行 + 1
+            End If
+        End If
+    Next i
+    
+    Application.CutCopyMode = False
+    Application.ScreenUpdating = True
+    
+End Sub
+
