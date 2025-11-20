@@ -1,0 +1,19 @@
+
+Sub CheckA2empty()
+
+    Dim rng As Range
+
+    Set rng = Worksheets("工作表1").Range("A2:A7")
+    
+    If Application.WorksheetFunction.CountA(rng) = 0 Then
+
+      MsgBox "A2:A7 全都是空的！"
+     
+      Exit Sub
+
+        Else
+
+    End If
+
+End Sub
+
