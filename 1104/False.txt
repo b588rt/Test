@@ -1,0 +1,19 @@
+
+Private Sub Workbook_Open()
+   
+    Application.DisplayAlerts = False   
+    
+    
+    Application.AutomationSecurity = msoAutomationSecurityForceDisable  
+    
+    Application.EnableEvents = False
+
+End Sub
+
+Private Sub Workbook_BeforeClose(Cancel As Boolean)
+
+    Application.DisplayAlerts = True
+    Application.AutomationSecurity = msoAutomationSecurityLow
+    Application.EnableEvents = True
+
+End Sub
