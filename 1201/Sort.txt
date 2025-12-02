@@ -1,0 +1,25 @@
+Sub SortBig()
+
+    Dim ws As Worksheet
+    Set ws = ThisWorkbook.Sheets("工作表1")
+    
+    Application.ScreenUpdating = False
+    
+    With ws.Sort
+        .SortFields.Clear
+        .SortFields.Add Key:=ws.Range("A2:A700"), _
+                        SortOn:=xlSortOnValues, _
+                        Order:=xlAscending, _
+                        DataOption:=xlSortNormal
+        
+        .SetRange ws.Range("A2:A700").CurrentRegion   
+        .Header = xlYes                              
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    
+    Application.ScreenUpdating = True
+    
+End Sub
