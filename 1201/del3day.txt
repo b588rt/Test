@@ -4,8 +4,7 @@ Sub Before3Day()
     Dim LastRow As Long
     Dim i As Long
     Dim dayrng As Date
-    
-   
+       
     Set ws = ThisWorkbook.Sheets("工作表1")
     
     dayrng = Date - 3
@@ -26,3 +25,4 @@ Sub Before3Day()
     Application.ScreenUpdating = True
     
 End Sub
+
