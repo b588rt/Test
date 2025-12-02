@@ -1,0 +1,39 @@
+Sub Delcompare()
+
+    Dim ws1 As Worksheet   
+    Dim ws3 As Worksheet   
+    Dim Dict As Object    
+    Dim LastRow1 As Long, LastRow3 As Long
+    Dim i As Long
+    Dim KeyData As String
+    
+    Set ws1 = ThisWorkbook.Sheets("工作表1")
+    Set ws3 = ThisWorkbook.Sheets("工作表3")
+    
+    Set Dict = CreateObject("Scripting.Dictionary")
+    Dict.CompareMode = vbTextCompare  
+    
+    LastRow3 = ws3.Cells(ws3.Rows.Count, "A").End(xlUp).Row
+    For i = 2 To LastRow3          
+        If Not IsEmpty(ws3.Cells(i, "A")) Then
+            Dict(ws3.Cells(i, "A").Value) = True
+        End If
+    Next i
+    
+    Application.ScreenUpdating = False
+    Application.Calculation = xlCalculationManual
+    
+    LastRow1 = ws1.Cells(ws1.Rows.Count, "D").End(xlUp).Row
+    For i = LastRow1 To 2 Step -1        
+        KeyData = Trim(ws1.Cells(i, "D").Value)  
+        If Not IsEmpty(KeyData) Then
+            If Dict.Exists(KeyData) Then
+                ws1.Rows(i).EntireRow.Delete  'Del ws1 A
+            End If
+        End If
+    Next i
+    
+    Application.Calculation = xlCalculationAutomatic
+    Application.ScreenUpdating = True
+    
+End Sub
