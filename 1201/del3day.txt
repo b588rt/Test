@@ -1,0 +1,28 @@
+Sub Before3Day()
+
+    Dim ws As Worksheet
+    Dim LastRow As Long
+    Dim i As Long
+    Dim dayrng As Date
+    
+   
+    Set ws = ThisWorkbook.Sheets("工作表1")
+    
+    dayrng = Date - 3
+    
+    Application.ScreenUpdating = False
+    
+      For i = 700 To 2 Step -1
+     
+        If Not IsEmpty(ws.Cells(i, 1)) Then
+            If IsDate(ws.Cells(i, 1)) Then
+                If ws.Cells(i, 1).Value < dayrng Then
+                    ws.Rows(i).EntireRow.Delete
+                End If
+            End If
+        End If
+    Next i
+    
+    Application.ScreenUpdating = True
+    
+End Sub
