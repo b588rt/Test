@@ -1,0 +1,11 @@
+dir
+pause
+c:
+d:
+e:
+pause
+
+taskkill /IM EXCEL.EXE /F
+
+pause
+
