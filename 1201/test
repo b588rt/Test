@@ -9,3 +9,6 @@ taskkill /IM EXCEL.EXE /F
 
 pause
 
+
+taskschd.msc
+
